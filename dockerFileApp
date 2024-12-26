@@ -1,0 +1,4 @@
+FROM openjdk:17
+EXPOSE 8081
+COPY /target/restlimit.jar restlimit.jar
+ENTRYPOINT ["java", "-jar", "restlimit.jar"]

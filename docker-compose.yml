@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    build:
+      dockerfile: dockerFileDB
+      context: .
+    container_name: 'db-postgres'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=javapro08
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./dockerConfig:/docker-entrypoint-initdb.d/
+
+  application:
+    depends_on:
+      - db
+    build:
+      dockerfile: dockerFileApp
+      context: .
+    container_name: 'java-start'
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/javapro08
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
