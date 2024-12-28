@@ -29,4 +29,9 @@ public class RestLimitController {
     public Limit decrementLimit(@RequestParam("id") long userId, @RequestBody double sum) {
         return limitServise.decrementLimit(userId, sum);
     }
+    @GetMapping("/resetLimit")
+    // уменьшение лимита, возвращает новый лимит после уменьшения
+    public void decrementLimit() {
+        limitServise.resetLimit();
+    }
 }

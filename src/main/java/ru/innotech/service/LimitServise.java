@@ -2,6 +2,7 @@ package ru.innotech.service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.innotech.entity.Limit;
 import ru.innotech.exception.LimitExceeding;
@@ -45,5 +46,11 @@ public class LimitServise {
         if (!executePayment()) throw new PaymentFailed();   // если платёж не был исполнен, кидаем исключение
         limitRepo.save(limit);  // сохраняем новый лимит
         return limit;
+    }
+
+    @Scheduled(cron = "${intreval_in_cron}") // каждый день в 00:00:00
+    @Transactional
+    public void resetLimit() {  // сброс значения лимита для всех пользователей
+        limitRepo.resetLimit(limitDefault);
     }
 }

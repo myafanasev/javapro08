@@ -11,4 +11,7 @@ spring:
         properties:
             hibernate:
                 format_sql: true
-
+scheduler:
+    enabled: true
+interval: PT02S
+intreval_in_cron: 0 0 0 * * *
