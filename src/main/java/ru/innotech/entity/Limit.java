@@ -9,6 +9,8 @@ import lombok.*;
 @Entity
 @Table(name = "limits")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Limit {
     @Id
     @Column(name = "user_id")

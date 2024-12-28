@@ -5,11 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cglib.proxy.Dispatcher;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import java.sql.Connection;
 
 @SpringBootApplication(scanBasePackages = "ru.innotech")
+@EnableScheduling
 public class Main {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Main.class);
